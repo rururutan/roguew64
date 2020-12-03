@@ -357,7 +357,7 @@ boolean imitating(row, col)
 register short row, col;
 {
 	if (dungeon[row][col] & MONSTER) {
-		object *object_at(), *monster;
+		object *monster;
 
 		if (monster = object_at(&level_monsters, row, col)) {
 			if (monster->m_flags & IMITATES) {

@@ -24,7 +24,7 @@ void zapp()
 	short wch;
 	object *wand;
 	short dir, row, col;
-	object *monster, *get_missiled_monster();
+	object *monster;
 
 	dir = get_direction();
 	if (dir == CANCEL) {
