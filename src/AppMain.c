@@ -81,7 +81,7 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,i
 	if(!RegisterClassEx(&wcx)){ MessageBox(NULL,"ウィンドウクラスの登録に失敗しました！",0,0); return 0;} // クラス登録
 
 	/* ウィンドウ作成 */
-	hWnd=CreateWindowEx(WS_EX_ACCEPTFILES,strClassName,strAppName,WS_POPUP|WS_SYSMENU|WS_MINIMIZEBOX|WS_CAPTION,0,0,0,0,HWND_DESKTOP,NULL,hInst,0);
+	hWnd=CreateWindowEx(WS_EX_ACCEPTFILES,strClassName,strAppName,WS_POPUP|WS_SYSMENU|WS_MINIMIZEBOX|WS_CAPTION,0,0,0,0,NULL,NULL,hInst,NULL);
 	if(!hWnd){ MessageBox(NULL,"ウィンドウの作成に失敗しました！",0,0); return 0;}
 
 	/* INI読み込み */
@@ -273,7 +273,7 @@ int loadINI()
 	if(rcWin.left == CW_USEDEFAULT) /* 初回のみ中央 */
 	{
 		SetClientWindow(hWnd,WS_POPUP|WS_SYSMENU|WS_MINIMIZEBOX|WS_CAPTION,x*DCOLS,y*DROWS);
-		SetCenterWindow(hWnd,0);
+		SetCenterWindow(hWnd,NULL);
 	}
 	else
 	{
