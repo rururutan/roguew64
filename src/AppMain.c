@@ -585,6 +585,7 @@ INT_PTR CALLBACK DlgProc_Config(HWND hDlg,UINT msg,WPARAM wp,LPARAM lp)
 	switch(msg)
 	{
 	case WM_INITDIALOG:
+		SetCenterWindow(hDlg,hWnd);
 		SetFocus(GetDlgItem(hDlg,IDOK));
 		SetDlgItemText(hDlg,IDC_MESG,strmesg);
 		SetDlgItemText(hDlg,IDC_NAME,strdefname);
