@@ -520,7 +520,7 @@ void md_gct(rt_buf)
 struct rogue_time *rt_buf;
 {
 	struct tm *t, *localtime();
-	long seconds;
+	time_t seconds;
 
 	time(&seconds);
 	t = localtime(&seconds);
@@ -570,7 +570,7 @@ struct rogue_time *rt_buf;
 	rt_buf->second = s[5];
 #else
 	struct stat sbuf;
-	long seconds;
+	time_t seconds;
 	struct tm *t;
 
 	stat(fname, &sbuf);
@@ -688,7 +688,7 @@ int nsecs;
 void sleep(nsecs)
 int nsecs;
 {
-	long t, time();
+	long t;
 
 	if (nsecs < 1)
 		nsecs = 1;
@@ -784,8 +784,6 @@ int md_gseed()
 #endif /* UNIX */
 
 #ifdef MSDOS
-	long time();
-
 	return ((int) time(0L));
 #endif /* MSDOS */
 }

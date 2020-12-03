@@ -118,7 +118,7 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,i
 
 	/* s: score r: restore */
 /*	if (init(argc - 1, argv + 1))*/
-	if(init(0,""))
+	if(init(0,NULL))
 	{	/* restored game */
 		goto PL;
 	}
@@ -456,7 +456,7 @@ LRESULT CALLBACK WinProc(HWND hWnd,UINT msg,WPARAM wp,LPARAM lp)
 	return 0;
 }
 
-BOOL CALLBACK DlgProc_Version(HWND hDlg,UINT msg,WPARAM wp,LPARAM lp)
+INT_PTR CALLBACK DlgProc_Version(HWND hDlg,UINT msg,WPARAM wp,LPARAM lp)
 {
 	static HFONT hFontLink=0;
 	static HCURSOR hCurLink=0;
@@ -513,7 +513,7 @@ BOOL CALLBACK DlgProc_Version(HWND hDlg,UINT msg,WPARAM wp,LPARAM lp)
 			{
 				/* カーソル設定 */
 				SetCursor(hCurLink);
-				SetWindowLong(hDlg,DWL_MSGRESULT,MAKELONG(TRUE,0));
+				SetWindowLong(hDlg,DWLP_MSGRESULT,MAKELONG(TRUE,0));
 
 				/* フローティング開始 */
 				if(!bFloat)
@@ -545,17 +545,17 @@ BOOL CALLBACK DlgProc_Version(HWND hDlg,UINT msg,WPARAM wp,LPARAM lp)
 				if(hFontLink) SelectObject(hDC,hFontLink);
 				SetTextColor(hDC,(bFloat)?0x000000FF:0x00FF8800);
 				SetBkMode(hDC,TRANSPARENT);
-				return (BOOL)(HBRUSH)GetStockObject(NULL_BRUSH);
+				return (INT_PTR)(HBRUSH)GetStockObject(NULL_BRUSH);
 			}
-			if( (HWND)lp == GetDlgItem(hDlg,IDC_USERDATA) ) return (BOOL)(HBRUSH)GetStockObject(WHITE_BRUSH);
-			return (BOOL)(HBRUSH)(COLOR_BTNFACE + 1);
+			if( (HWND)lp == GetDlgItem(hDlg,IDC_USERDATA) ) return (INT_PTR)(HBRUSH)GetStockObject(WHITE_BRUSH);
+			return (INT_PTR)(HBRUSH)(COLOR_BTNFACE + 1);
 		}break;
 	default: return FALSE;
 	}
 	return TRUE;
 }
 
-BOOL CALLBACK DlgProc_Name(HWND hDlg,UINT msg,WPARAM wp,LPARAM lp) 
+INT_PTR CALLBACK DlgProc_Name(HWND hDlg,UINT msg,WPARAM wp,LPARAM lp) 
 {
 	switch(msg)
 	{
@@ -580,7 +580,7 @@ BOOL CALLBACK DlgProc_Name(HWND hDlg,UINT msg,WPARAM wp,LPARAM lp)
 	return TRUE;
 }
 
-BOOL CALLBACK DlgProc_Config(HWND hDlg,UINT msg,WPARAM wp,LPARAM lp) 
+INT_PTR CALLBACK DlgProc_Config(HWND hDlg,UINT msg,WPARAM wp,LPARAM lp) 
 {
 	switch(msg)
 	{
@@ -629,8 +629,12 @@ void SetCenterWindow(HWND hw,HWND hwD)
 	HWND hwDesk;
 	RECT rcDesk,rcWnd;
 	int x,y;
-	
-	hwDesk=hwD;/*GetDesktopWindow();*/
+
+	if (hwD == NULL) {
+		hwDesk=GetDesktopWindow();
+	} else {
+		hwDesk=hwD;
+	}
 
 	GetWindowRect(hwDesk,&rcDesk);
 	GetWindowRect(hw    ,&rcWnd );

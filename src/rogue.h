@@ -892,9 +892,9 @@ void  charreset ();
 
 int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,int nCmdShow);
 LRESULT	CALLBACK WinProc(HWND hwnd,UINT msg,WPARAM wp,LPARAM lp);
-BOOL	CALLBACK DlgProc_Version(HWND hDlg,UINT msg,WPARAM wp,LPARAM lp);
-BOOL	CALLBACK DlgProc_Name(HWND hDlg,UINT msg,WPARAM wp,LPARAM lp);
-BOOL	CALLBACK DlgProc_Config(HWND hDlg,UINT msg,WPARAM wp,LPARAM lp);
+INT_PTR	CALLBACK DlgProc_Version(HWND hDlg,UINT msg,WPARAM wp,LPARAM lp);
+INT_PTR	CALLBACK DlgProc_Name(HWND hDlg,UINT msg,WPARAM wp,LPARAM lp);
+INT_PTR	CALLBACK DlgProc_Config(HWND hDlg,UINT msg,WPARAM wp,LPARAM lp);
 
 void SetClientWindow(HWND hw,DWORD s,int w,int h);
 void SetCenterWindow(HWND hw,HWND hwD);
