@@ -158,13 +158,13 @@ BEGIN
     CTEXT           "mailto:hepopo@sp.office.ne.jp",IDC_EMAIL,14,54,130,8,
                     SS_NOTIFY | NOT WS_GROUP
     GROUPBOX        "",IDC_STATIC,10,32,138,36,BS_CENTER
-    LTEXT           "1987 ： Tim Stoehr ： ローグクローン原作",IDC_STATIC,14,
-                    78,119,8
-    LTEXT           "1988 ： 太田　純 ： 日本語版＆MS-DOS移植",IDC_STATIC,14,
-                    88,130,8
-    LTEXT           "1992 ： 伊藤 康史 ： データ分離版",IDC_STATIC,14,98,100,
+    LTEXT           "1987 ： Tim Stoehr ： ローグクローン原作",IDC_STATIC,12,
+                    78,140,8
+    LTEXT           "1988 ： 太田　純 ： 日本語版＆MS-DOS移植",IDC_STATIC,12,
+                    88,140,8
+    LTEXT           "1992 ： 伊藤 康史 ： データ分離版",IDC_STATIC,12,98,140,
                     8
-    LTEXT           "1999 ： 風桜へぽぽ ： Windows版",IDC_STATIC,14,108,97,8
+    LTEXT           "1999 ： 風桜へぽぽ ： Windows版",IDC_STATIC,12,108,120,8
     LTEXT           "敬称略",IDC_STATIC,18,128,22,8
     GROUPBOX        "",IDC_STATIC,10,68,138,54,BS_CENTER
 END
