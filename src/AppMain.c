@@ -86,7 +86,7 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,i
 
 	/* INIì«Ç›çûÇ› */
 	GetModuleFileName(NULL,strini,MAX_PATH);
-	strini[strlen(strini)-3]=0; strcat(strini,"INI");
+	strini[strlen(strini)-3]=0; strcat(strini,"ini");
 	loadINI();
 	ShowWindow(hWnd,nCmdShow);
 
