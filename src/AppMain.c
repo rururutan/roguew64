@@ -473,17 +473,21 @@ INT_PTR CALLBACK DlgProc_Version(HWND hDlg,UINT msg,WPARAM wp,LPARAM lp)
 		SetWindowText(GetDlgItem(hDlg,IDC_VERTITLE),strAppName);
 
 		/* Create Link Resource */
-		memset(&lf,0,sizeof(LOGFONT));
-		lf.lfHeight			= 12;
-		lf.lfWeight			= 600;
-		lf.lfItalic			= TRUE;
-		lf.lfUnderline		= TRUE;
-		lf.lfCharSet		= DEFAULT_CHARSET;
-		strcpy(lf.lfFaceName,"Verdana");
-		hFontLink=CreateFontIndirect(&lf);
-		if(hFontLink) SendMessage(GetDlgItem(hDlg,IDCANCEL),WM_SETFONT,(WPARAM)hFontLink,MAKELPARAM(TRUE,0));
+		{
+			memset(&lf,0,sizeof(LOGFONT));
+			HDC dc = GetDC(hDlg);
+			lf.lfHeight			= -MulDiv(7, GetDeviceCaps(dc, LOGPIXELSY), 72);
+			lf.lfWeight			= FW_SEMIBOLD;
+			lf.lfItalic			= TRUE;
+			lf.lfUnderline		= TRUE;
+			lf.lfCharSet		= DEFAULT_CHARSET;
+			strcpy(lf.lfFaceName,"Verdana");
+			hFontLink=CreateFontIndirect(&lf);
+			if(hFontLink) SendMessage(GetDlgItem(hDlg,IDCANCEL),WM_SETFONT,(WPARAM)hFontLink,MAKELPARAM(TRUE,0));
+			ReleaseDC(hDlg, dc);
+		}
 
-		hCurLink=LoadCursor(NULL,MAKEINTRESOURCE(32649)); // IDC_HAND or IDC_HELP
+		hCurLink=LoadCursor(NULL,MAKEINTRESOURCE(IDC_HAND));
 		if(!hCurLink) hCurLink=LoadCursor(NULL,IDC_HELP);
 
 		}break;
